@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gig Hub | Online Tasks</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f3f7f5;color:#17352b}
+header{background:#075e46;color:white;padding:20px}
+header h1{margin:0}
+header p{margin:8px 0 0}
+main{max-width:850px;margin:auto;padding:18px}
+.hero,.card,.wallet{background:white;padding:20px;border-radius:14px;margin-bottom:16px;box-shadow:0 3px 12px #0000000c}
+.hero{background:#075e46;color:white}
+h2{margin-top:0}
+button{background:#087f5b;color:white;border:0;padding:12px 16px;border-radius:8px;font-weight:bold;cursor:pointer}
+input{padding:12px;width:100%;margin:8px 0;border:1px solid #ccd8d1;border-radius:8px}
+.reward{font-weight:bold;color:#087f5b}
+.notice{font-size:13px;color:#596b62;line-height:1.5}
+footer{text-align:center;padding:25px;color:#65756c}
+</style>
+</head>
+<body>
+<header>
+<h1>🌿 Gig Hub</h1>
+<p>Discover tasks. Build skills. Track rewards.</p>
+</header>
+<main>
+<section class="hero">
+<h2>Welcome to Gig Hub!</h2>
+<p>Explore online tasks and discover new opportunities.</p>
+<button onclick="document.getElementById('tasks').scrollIntoView()">Explore tasks ↓</button>
+</section>
+
+<section class="wallet">
+<h2>My Demo Wallet</h2>
+<p>Available balance: <strong id="balance">KSh 0</strong></p>
+<p id="count">Tasks submitted: 0</p>
+<p class="notice">This is a demonstration. No real money is earned or paid.</p>
+</section>
+
+<h2 id="tasks">Available Tasks</h2>
+<div id="taskList"></div>
+
+<section class="card">
+<h2>Registration</h2>
+<p>Registration fee planned: KSh 50</p>
+<p class="notice">Registration and payment are not active yet. Do not send money to anyone through this demo.</p>
+</section>
+
+<section class="card">
+<h2>M-Pesa Withdrawals</h2>
+<p class="notice">Real withdrawals will be added after secure accounts, a database and payment integration are configured.</p>
+<button onclick="alert('Demo only: M-Pesa is not connected yet.')">Withdraw (Demo)</button>
+</section>
+</main>
+<footer>© 2026 Gig Hub · Sample task platform</footer>
+
+<script>
+const tasks=[
+ {name:"Swahili Transcription",reward:120,desc:"Practice transcribing short audio recordings."},
+ {name:"Micro-task",reward:40,desc:"Categorise sample product descriptions."},
+ {name:"Affiliate Referrals",reward:100,desc:"Learn how approved referral programmes work."},
+ {name:"Educational Video",reward:25,desc:"Explore a sample video-based task."}
+];
+let submitted=0;
+document.getElementById("taskList").innerHTML=tasks.map((t,i)=>`
+ <section class="card">
+ <h3>${t.name}</h3>
+ <p>${t.desc}</p>
+ <p class="reward">Sample reward: KSh ${t.reward}</p>
+ <button onclick="submitTask(${i})">Submit demo task</button>
+ </section>`).join("");
+function submitTask(i){
+ submitted++;
+ document.getElementById("count").textContent="Tasks submitted: "+submitted;
+ alert("Demo submission recorded for "+tasks[i].name+". No real reward has been paid.");
+}
+</script>
+</body>
+</html>
